@@ -9,7 +9,9 @@ class ItemController {
         message: 'Successfully retrieve data!',
         items,
       });
-    } catch (err) {}
+    } catch (err) {
+      next(err);
+    }
   }
 }
 
