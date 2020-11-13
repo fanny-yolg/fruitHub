@@ -7,21 +7,22 @@ dotenv.config();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors);
+//middleware parser
+app.use(express.json()); //req.body
+app.use(express.urlencoded({ extended: true })); // encoded
+app.use(cors());
 
 //db config
-const mongoURI = process.env.MONGO_URI;
-mongoose.Promise = global.Promise;
-const option = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+const mongoURI = process.env.MONGO_URI; // panggil mongo connection
+mongoose.Promise = global.Promise; // Pakai promise node
+const options = {
+  useNewUrlParser: true, //biar tidak ada error
+  useUnifiedTopology: true, //enable feture sebelumnya
   useFindAndModify: false,
 };
-mongoose.connect(mongoURI, option);
+mongoose.connect(mongoURI, options); //connect db
 
-//Database connection
+//Database connection show in console
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error'));
 db.once('open', () => console.log('Connected to mongoDB!'));

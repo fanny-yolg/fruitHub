@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const uniqueValidator = require('mongoose-unique-validator');
 
 const itemSchema = new Schema(
   {
@@ -16,8 +15,8 @@ const itemSchema = new Schema(
       type: Number,
       default: 0,
     },
-    //   user: { type: Schema.Types.ObjectId, ref: 'User' },
-    //   product: { type: Schema.Types.ObjectId, ref: 'Product' },
+    user: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+    product: { type: Schema.Types.ObjectId, ref: 'Product', default: null },
   },
   { timestamps: true, versionKey: false }
 );

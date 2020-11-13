@@ -13,6 +13,18 @@ class ItemController {
       next(err);
     }
   }
+  static async addItem(req, res, next) {
+    try {
+      const addItem = await Item.create(req.body);
+      res.status(201).json({
+        success: true,
+        message: 'successfully create an item',
+        addItems,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = ItemController;
